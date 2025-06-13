@@ -1,0 +1,91 @@
+/* nav bar */
+.nav-wrapper {
+    background-color: #6f4037;
+}
+/* slider */
+.slider .indicators .indicator-item.active {
+    background-color: #6f4037;
+}
+/* move */
+.move {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+/* footer text */
+#footer-text {
+    font-size: 16px;
+    color: white;
+}
+/* footer */
+.page-footer {
+    background-color: #6f4037;
+}
+/* modal-close */
+.modal-close {
+    color: #6f4037;
+    font-weight: bold;  
+}
+
+/* modal-content */
+.modal-content {
+    background-color: #6f4037;
+    color: white;
+    font-weight: bold;
+}
+/* modal-header */
+.modal-header {
+    background-color: #6f4037;
+    color: white;
+    text-align: center;
+    padding-top: 15px;
+}
+/* modal-footer */
+.modal-footer {
+    background-color: #704a43;
+    color: white;
+    text-align: center;
+}
+/* parallax */
+.parallax .parallax-wrap {
+    background-image: url("images/image2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;    
+}
+/* modal-content */
+.modal-content {
+    background-color: #704a43;
+    color: white;
+    font-weight: bold;
+}
+.modal1 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+/* Social media icons styling */
+.social-links {
+  margin-top: 10px;
+}
+
+.social-icon {
+  display: inline-block;
+  margin-right: 15px;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

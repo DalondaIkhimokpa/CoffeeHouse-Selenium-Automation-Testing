@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee House</title>
+    <!--Import Google Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    <!--Import Material Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- custom css-->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Add this line to include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <a href="#" onclick="toggleModal()">Click me</a>
+    <!-- nav bar -->
+    <section class="fnavbar">
+    <nav class="nav-fixed">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Coffee House</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i 
+        class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#" onclick="toggleModal();">Home</a></li>
+        <li><a href="#" onclick="toggleModal();">About</a></li>
+        <li><a href="#" onclick="toggleModal();">Coffee</a></li>
+        <li><a href="#" onclick="toggleModal();">Menu</a></li>
+        <li><a href="#" onclick="toggleModal();">Contact Us</a></li>
+      </ul>
+    </div>
+    </nav>
+  </section>
+    <!-- sidenav -->
+  <section class="sidenav">
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i 
+        class="material-icons">menu</i></a>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="#" onclick="toggleModal();">Home</a></li>
+        <li><a href="#" onclick="toggleModal();">About</a></li>
+        <li><a href="#" onclick="toggleModal();">Coffee</a></li>
+        <li><a href="#" onclick="toggleModal();">Menu</a></li>
+        <li><a href="#" onclick="toggleModal();">Contact Us</a></li>
+      </ul>    
+  </section>
+  <!-- slider -->
+  <section class="fslider">
+    <div class="slider">
+      <ul class="slides">
+        <!-- first slide -->
+         <li>
+          <img src="images/image7.jpg" alt="image two">
+          <div class="caption center-align white-text">
+            <h5>Welcome to Coffee House</h5>
+            <h6 class="light text-lighten-3">Home of Quality Coffee</h6>
+          </div>
+        </li>
+        <li>
+          <img src="images/image2.jpg" alt="image two">
+          <div class="caption center-align white-text">
+            <h5>Welcome to Coffee House</h5>
+            <h6 class="light text-lighten-3">Home of Freshly Roasted Coffee</h6>
+          </div>
+        </li>
+        <li>
+          <img src="images/image3.jpg" alt="image three">
+          <div class="caption center-align white-text">
+            <h5>Welcome to Coffee House</h5>
+            <h6 class="light text-lighten-3">Coffee Served with a Smile</h6>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  
+  <!-- description -->
+  <section class="description section scrollspy">
+    <div class="container">
+    </div>
+  </section>
+  <!-- About Section -->
+  <section id="about" class="container section scrollspy">
+    <div class="row">
+      <div class="col s12">
+        <h4 class="center-align">About Us</h4>
+        <div class="divider"></div>
+        <p class="grey-text text-darken-2 center-align move">We're passionate about bringing you the finest coffee experience.</p>
+        <div class="center-align">
+          <button class="btn modal-trigger waves-effect waves-light blue darken-3 white-text" data-target="modal1">Read More</button>
+          <section class="about-details">
+            <h5 class="section-title">
+              <i class="material-icons small brown-text">local_cafe</i> 
+              Our Coffee Journey 
+              <i class="material-icons small brown-text">local_cafe</i>
+            </h5>
+            <p class="grey-text text-darken-2 story-text">
+              <i class="material-icons tiny brown-text">favorite</i> 
+              Our journey began with a simple passion for quality coffee.
+              <i class="material-icons tiny brown-text">favorite</i>
+            </p>
+          </section>
+        </div>
+        <div class="divider"></div>
+        <br>
+        <div class="divider"></div>
+      </div>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h4>About Us</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, voluptates.</p>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+          </div>
+        </div>
+        <!-- End of Modal Structure -->
+         <section>
+            <div class="fservices"></div>
+            <div class="row"></div>
+            <div class="col s12 14 center-align" style="padding: 10px; margin: 10px auto;">
+                <img src="images/image11.jpg" alt="Our Story" class="responsive-img" style="display: block; margin: 10px auto;">
+                <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, voluptates. Our journey began with a simple passion for quality coffee.</p>
+                <div class="row"></div>
+            </div>
+            <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+          <div class="text-center mb-16">
+              <h2 class="text-3xl md:text-4xl font-bold mb-4 coffee-text heading-font">Our Menu</h2>
+              <div class="divider"></div>
+              <div class="w-20 h-1 bg-coffee-600 mx-auto mb-6"></div>
+              <p class="text-gray-600 max-w-3xl mx-auto">Discover our selection of handcrafted beverages and delicious treats. All made with the finest ingredients.</p>
+              <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, volupt ates. Our journey began with a simple passion for quality coffee.</p>
+              <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate amet repellendus excepturi possimus? Facere ex nisi nostrum magnam? Nesciunt quisquam, nihil in facere beatae reiciendis magni nulla ipsam pariatur labore.</p>
+              <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate amet repellendus excepturi possimus? Facere ex nisi nostrum magnam magnam? Nesciunt quisquam quisquam  labore.</p>
+          </div>
+      </div>
+              <div class="divider"></div>
+              <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                  <h2 class="text-3xl md:text-4xl font-bold mb-4 coffee-text heading-font">Our Specials</h2>
+                  <div class="divider"></div>
+                  <h5 class="center-align" style="margin-top: 50px;">Coffee Specials</h5>
+                </div>
+              </div>
+                 <div class="divider"></div>
+                 
+                 <ul class="collection">
+                     <li class="collection-item">
+                         <span class="title"><strong>Caramel Macchiato</strong></span>
+                         <p>Espresso with vanilla-flavored syrup, milk and caramel drizzle<br>
+                         <span class="grey-text">$4.99</span></p>
+                     </li>
+                     <li class="collection-item">
+                         <span class="title"><strong>Pumpkin Spice Latte</strong></span>
+                         <p>Espresso and steamed milk with pumpkin pie spices<br>
+                         <span class="grey-text">$5.49</span></p>
+                     </li>
+                     <li class="collection-item">
+                         <span class="title"><strong>Iced Vanilla Bean</strong></span>
+                         <p>Cold brew with vanilla bean powder and cream<br>
+                         <span class="grey-text">$4.79</span></p>
+                     </li>
+                 </ul>
+                 
+                 <div class="divider" style="margin: 20px 0;"></div>
+    </section>
+          <div class="row"></div>
+            <div class="col s12 m6 l6">
+                <div class="col s12 14 center-align" style="padding: 50px; margin: 50px auto;"></div>
+                <img src="images/image8.jpg" alt="Our Story" class="responsive-img" style="display: block; margin: 10px auto;">
+                <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, voluptates. Our journey began with a simple passion for quality coffee.</p>
+                <div class="row"></div>
+            </div>
+            <div class="col s12 m6 l6">
+                <div class="col s12 14 center-align" style="padding: 50px; margin: 50px auto;"></div>
+                <img src="images/image4.jpg" alt="Our Story" class="responsive-img" style="display: block; margin: 10px auto;">
+                <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, voluptates. Our journey began with a simple passion for quality coffee.</p>
+                <div class="row"></div>
+            </div> 
+         </section>
+      </div>
+    <div class="row">
+      <div class="col l6 s12">
+        <div class="card-panel">
+          <h5 class="center-align">Our Story</h5>
+          <img src="images/image4.jpg" alt="Our Story" class="responsive-img" style="display: block; margin: 10px auto;">
+          <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, voluptates. Our journey began with a simple passion for quality coffee.</p>
+        </div>
+      </div>
+      <div class="col l6 s12">
+        <div class="card-panel">
+          <h5 class="center-align">Our Mission</h5>
+          <img src="images/image8.jpg" alt="Our Mission" class="responsive-img" style="display: block; margin: 10px auto;">
+          <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. We strive to provide the perfect cup while supporting sustainable farming practices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Services Section -->
+  <section id="services" class="container section scrollspy">
+    <div class="row">
+      <div class="col s12">
+        <h4 class="center-align">Our Services</h4>
+        <div class="divider"></div>
+        <p class="grey-text text-darken-2 center-align move">Discover our range of premium offerings crafted just for you.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l6 s12">
+        <div class="card medium hoverable">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="images/image9.jpg" alt="Coffee service">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">Premium Coffee<i class="material-icons right">more_vert</i></span>
+            <p>Expertly roasted beans from around the world, prepared to perfection.</p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Premium Coffee<i class="material-icons right">close</i></span>
+            <p>Our coffee is sourced from sustainable farms and roasted in small batches to ensure the freshest flavor.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col l6 s12">
+        <div class="card medium hoverable">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="images/image12.jpg" alt="Pastry selection">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">Artisan Pastries<i class="material-icons right">more_vert</i></span>
+            <p>Freshly baked treats that perfectly complement your coffee experience.</p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Artisan Pastries<i class="material-icons right">close</i></span>
+            <p>Our pastries are made daily using only the finest ingredients, creating the perfect pairing for your coffee.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Customer Testimonials Section -->
+    <div class="row">
+        <div class="col s12 center-align">
+            <h5><i class="material-icons small brown-text">star</i> What Our Customers Say <i class="material-icons small brown-text">star</i></h5>
+            <div class="divider"></div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col s12 m4">
+            <div class="card-panel">
+                <div class="center-align">
+                    <i class="material-icons medium brown-text">format_quote</i>
+                </div>
+                <p class="grey-text text-darken-2">Best coffee I've ever had! The atmosphere is amazing too.</p>
+                <div class="center-align">
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star</i>
+                </div>
+                <p class="center-align"><strong>- Sarah J.</strong></p>
+            </div>
+        </div>
+        
+        <div class="col s12 m4">
+            <div class="card-panel">
+                <div class="center-align">
+                    <i class="material-icons medium brown-text">format_quote</i>
+                </div>
+                <p class="grey-text text-darken-2">I come here every morning. The staff is friendly and the coffee is perfect!</p>
+                <div class="center-align">
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star_half</i>
+                </div>
+                <p class="center-align"><strong>- Michael T.</strong></p>
+            </div>
+        </div>
+        
+        <div class="col s12 m4">
+            <div class="card-panel">
+                <div class="center-align">
+                    <i class="material-icons medium brown-text">format_quote</i>
+                </div>
+                <p class="grey-text text-darken-2">Their pastries are as amazing as their coffee. A must-visit!</p>
+                <div class="center-align">
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star</i>
+                    <i class="material-icons tiny amber-text">star</i>
+                </div>
+                <p class="center-align"><strong>- Emma R.</strong></p>
+            </div>
+        </div>
+    </div>
+</section>
+  <!-- Parallax -->
+   <section id="parallax-section" class="parallax-container">
+    <div class="parallax"><img src="images/image1.jpg" alt="Parallax Image"></div>
+   <!-- End of parallax -->
+  </section>
+  <!-- End of slider -->        
+  <!-- Footer -->  
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l4 s12">
+          <h5 class="white-text">Coffee House</h5>
+          <p id="footer-text">Coffee House is a coffee shop located in the heart of the city, offering a wide range of delicious and high-quality coffee drinks to its customers.</p>
+        </div>
+        <div class="col l4 s12">
+          <h5 class="white-text">Contact Us</h5>
+          <div class="address">
+            <p><i class="material-icons tiny">location_on</i> 123 Coffee Street, Brewville</p>
+            <p><i class="material-icons tiny">phone</i> (555) 123-4567</p>
+            <p><i class="material-icons tiny">email</i> info@coffeehouse.com</p>
+          </div>
+          <h5 class="white-text">Follow Us</h5>
+          <div class="social-links">
+            <a class="white-text social-icon" href="#"><i class="fab fa-facebook-f fa-lg"></i></a>
+            <a class="white-text social-icon" href="#"><i class="fab fa-twitter fa-lg"></i></a>
+            <a class="white-text social-icon" href="#"><i class="fab fa-instagram fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col l4 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!" onclick="toggleModal();">Home</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!" onclick="toggleModal();">About</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!" onclick="toggleModal();">Coffee</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!" onclick="toggleModal();">Menu</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!" onclick="toggleModal();">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2025 Copyright Coffee House | Designed by D. Ikhimokpa
+      </div>
+    </div>
+  </footer>
+    <!-- info modal -->
+    <section class="infomodal">
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <h4 id= "info-modal-heading">Link Disabled</h4> 
+            <p id="info-modal-content">Sorry, this link is disabled for now. Please try again later.</p>
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>    
+        </div>
+    </div>
+    </section>
+    <!--Import jQuery before materialize.js-->
+<script src="https://code.jquery.com/jquery-3.7.1.js" 
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+    crossorigin="anonymous">
+</script>
+  <!-- M script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+    </script>
+<!-- custom js-->
+<script src="js/script.js"></script>
+</body>
+</html>
+

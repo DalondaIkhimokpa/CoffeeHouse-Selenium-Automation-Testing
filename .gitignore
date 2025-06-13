@@ -1,4 +1,5 @@
-.txt
+# Text files
+*.txt
 node_modules/
 .env
 *.log

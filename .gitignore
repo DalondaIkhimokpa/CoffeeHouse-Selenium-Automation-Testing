@@ -1,7 +1,15 @@
 # Text files
 *.txt
+
+# Node
 node_modules/
-.env
-*.log
+npm-debug.log*
+
+# Selenium
+chromedriver.log
+geckodriver.log
+
+# System
 .DS_Store
+
 vendor

@@ -7,7 +7,8 @@
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com)
 [![Mocha](https://img.shields.io/badge/Mocha-8D6748?style=for-the-badge&logo=Mocha&logoColor=white)](https://mochajs.org)
 [![ChromeDriver](https://img.shields.io/badge/ChromeDriver-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)](https://chromedriver.chromium.org)
-[![MaterializeCSS](https://img.shields.io)]  
+[![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net)
+[![MaterializeCSS](https://img.shields.io/badge/Materialize-CSS-ee6e73?logo=material-design&logoColor=white)](https://materializecss.com)
 [![PHPUnit Tests](https://github.com/DalondaIkhimokpa/CoffeeHouse-Selenium-Automation-Testing/actions/workflows/phpunit-tests.yml/badge.svg)](https://github.com/DalondaIkhimokpa/CoffeeHouse-Selenium-Automation-Testing/actions/workflows/phpunit-tests.yml)
 [![Selenium Tests](https://github.com/DalondaIkhimokpa/CoffeeHouse-Selenium-Automation-Testing/actions/workflows/selenium-tests.yml/badge.svg)](https://github.com/DalondaIkhimokpa/CoffeeHouse-Selenium-Automation-Testing/actions/workflows/selenium-tests.yml)
 

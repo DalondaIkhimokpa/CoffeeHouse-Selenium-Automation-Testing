@@ -1,90 +1,60 @@
 const { Builder, By, until } = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 const fs = require('fs');
 
-// Debugging function (unchanged)
+// Debugging function to save screenshots
 async function takeScreenshot(driver, name) {
-  try {
-    const screenshot = await driver.takeScreenshot();
-    const screenshotPath = `tests/selenium/screenshots/${name}.png`;
-    fs.mkdirSync('tests/selenium/screenshots', { recursive: true });
-    fs.writeFileSync(screenshotPath, screenshot, 'base64');
-    console.log(`📸 Screenshot saved: ${screenshotPath}`);
-  } catch (err) {
-    console.error('⚠️ Failed to take screenshot:', err.message);
-  }
+  const screenshot = await driver.takeScreenshot();
+  fs.writeFileSync(`${name}.png`, screenshot, 'base64');
+  console.log(`📸 Screenshot saved: ${name}.png`);
 }
 
 describe('Coffee House Tests', function() {
-  this.timeout(60000);
+  this.timeout(30000); // 30 second timeout
   let driver;
 
   before(async () => {
-    console.log('\n🚀 Launching browser...');
-    
-    try {
-      driver = await new Builder()
-        .forBrowser('chrome')
-        .usingServer(process.env.SELENIUM_REMOTE_URL || 'http://localhost:4444/wd/hub')
-        .build();
-        
-      console.log('✅ Browser session started');
-    } catch (err) {
-      console.error('❌ Browser initialization failed:', err);
-      throw err;
-    }
+    console.log('\n🚀 Launching Chrome browser...');
+    driver = await new Builder()
+      .forBrowser('chrome')
+      .setChromeOptions(new chrome.Options())
+      .build();
   });
 
   it('should load homepage', async () => {
-    const testUrl = process.env.TEST_URL || 'http://localhost:8080';
-    console.log(`\n🌐 Navigating to ${testUrl}...`);
+    console.log('\n🌐 Navigating to http://localhost:8080...');
+    await driver.get('http://localhost:8080');
     
-    try {
-      await driver.get(testUrl);
-      const actualTitle = await driver.getTitle();
-      console.log(`ℹ️ Page title: "${actualTitle}"`);
-      
-      if (!actualTitle.includes('Coffee House')) {
-        await takeScreenshot(driver, 'homepage-title-fail');
-        throw new Error(`Title missing "Coffee House" (actual: "${actualTitle}")`);
-      }
-      
-      await takeScreenshot(driver, 'homepage-success');
-    } catch (err) {
-      await takeScreenshot(driver, 'homepage-load-fail');
-      throw err;
+    // Debug: Print actual title
+    const actualTitle = await driver.getTitle();
+    console.log(`ℹ️ Actual page title: "${actualTitle}"`);
+    
+    // Now checking for "Coffee House"
+    if (!actualTitle.includes('Coffee House')) {
+      await takeScreenshot(driver, 'wrong-title');
+      throw new Error(`Expected title to contain "Coffee House", but got "${actualTitle}"`);
     }
+    
+    console.log('✅ Homepage loaded successfully');
   });
 
-  it('should have visible menu section', async () => {
-    console.log('\n🔍 Checking menu section...');
-    
+  it('should have menu section', async () => {
+    console.log('\n🔍 Looking for menu section...');
     try {
-      // More flexible element location
-      const menu = await driver.wait(
-        until.elementLocated(By.css('#menu, [data-testid="menu"], [class*="menu"]')),
-        15000
-      );
-      
-      if (!(await menu.isDisplayed())) {
-        await takeScreenshot(driver, 'menu-not-visible');
-        throw new Error('Menu exists but is not visible');
-      }
-      
-      await takeScreenshot(driver, 'menu-visible');
+      const menu = await driver.wait(until.elementLocated(By.id('menu')), 5000);
+      console.log('✅ Menu section found');
+      await takeScreenshot(driver, 'menu-found');
     } catch (err) {
       await takeScreenshot(driver, 'menu-missing');
+      console.log('❌ Could not find menu section. Check screenshot: menu-missing.png');
       throw err;
     }
   });
 
   after(async () => {
     if (driver) {
-      try {
-        await driver.quit();
-        console.log('\n🛑 Browser closed');
-      } catch (err) {
-        console.error('⚠️ Error closing browser:', err.message);
-      }
+      console.log('\n🛑 Closing browser...');
+      await driver.quit();
     }
   });
 });

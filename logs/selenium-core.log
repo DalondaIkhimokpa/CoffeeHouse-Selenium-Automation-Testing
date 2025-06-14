@@ -1,0 +1,46 @@
+
+> coffeeshop-materialize-css@1.0.0 test
+> mocha tests/selenium/ --timeout 60000
+
+
+
+  Coffee House Tests
+
+🚀 Launching Chrome browser...
+
+🌐 Navigating to http://localhost:8080...
+ℹ️ Actual page title: "Coffee House"
+✅ Homepage loaded successfully
+    ✔ should load homepage (1843ms)
+
+🔍 Looking for menu section...
+✅ Menu section found
+📸 Screenshot saved: menu-found.png
+    ✔ should have menu section (573ms)
+
+🛑 Closing browser...
+
+  Homepage Test
+✅ Test passed!
+    ✔ should load http://localhost:8080 (2591ms)
+
+  Footer Tests
+📸 Screenshot saved: footer-contact.png
+    ✔ should display correct contact information (2878ms)
+
+  Navigation Tests
+Navigation to About section successful: true
+📸 Screenshot saved: about-section.png
+    ✔ should navigate to About section (2261ms)
+
+  Testimonials Tests
+Testimonial text: Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, voluptates. Our journey began with a simple passion for quality coffee.
+Testimonial content is incorrect.
+    ✔ should display correct testimonial text (2643ms)
+
+  Hello World Selenium Test
+    ✔ should open the website and check the title (1202ms)
+
+
+  7 passing (17s)
+

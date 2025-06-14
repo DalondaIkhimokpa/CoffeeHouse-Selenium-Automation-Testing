@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "test": "mocha tests/selenium/ --timeout 60000",
-    "test:debug": "TEST_URL=http://localhost:3000 npm test"
+    "test:debug": "TEST_URL=http://localhost:8080 npm test"
   },
   "dependencies": {
     "chai": "4.3.6",
     "chromedriver": "^137.0.3",
-    "mocha": "10.0.0",
-    "selenium-webdriver": "4.1.0"
+    "mocha": "^10.8.2",
+    "selenium-webdriver": "^4.33.0"
   }
 }

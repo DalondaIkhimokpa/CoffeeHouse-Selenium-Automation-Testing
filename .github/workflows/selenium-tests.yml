@@ -1,27 +1,32 @@
-name: Selenium Tests (Docker)
+name: Selenium Tests
 
 on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      selenium:
-        image: seleniarm/standalone-chrome # For ARM runners
-        ports:
-          - 4444:4444
+
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Set up Node.js
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
-      - name: Install dependencies
+
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          google-chrome --version
+
+      - name: Install NPM Dependencies
         run: npm install
-      
-      - name: Run tests
-        run: npx mocha tests/selenium/ --timeout=60000
-        env:
-          SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
+
+      - name: Start PHP Server
+        run: |
+          php -S localhost:8080 &> php-server.log &
+          sleep 5  # Wait for server to boot
+
+      - name: Run Tests
+        run: npm test

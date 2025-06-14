@@ -1,18 +1,12 @@
 {
   "name": "coffeeshop-materialize-css",
   "version": "1.0.0",
-  "description": "Automated tests for Coffee Shop Website",
   "scripts": {
-    "test": "mocha tests/selenium/ --timeout 30000 --exit",
-    "test:debug": "DEBUG=selenium-webdriver mocha tests/selenium/ --timeout 30000",
-    "test:visual": "mocha tests/selenium/ --timeout 30000 --reporter mochawesome",
-    "start-server": "php -S localhost:8080 -t ./"
+    "test": "mocha tests/selenium/ --timeout 30000"
   },
   "dependencies": {
-    "selenium-webdriver": "^4.16.0",
-    "mocha": "^10.2.0",
-    "chai": "^4.3.10"
-  },
-  "author": "D.Ikhimokpa",
-  "license": "ISC"
+    "selenium-webdriver": "4.1.0",
+    "mocha": "10.0.0",
+    "chai": "4.3.6"
+  }
 }

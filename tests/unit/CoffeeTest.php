@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class ExampleTest extends TestCase
+class CoffeeTest extends TestCase
 {
     public function testBasicMath()
     {

@@ -1,30 +1,21 @@
+const BASE_URL = process.env.CI ? 'http://localhost:8080' : 'http://localhost:8080';
 const { Builder, By, until } = require('selenium-webdriver');
 const assert = require('assert');
 
 describe('Hello World Selenium Test', function() {
-    this.timeout(30000);
     let driver;
 
     before(async function() {
-        driver = await new Builder()
-            .forBrowser('chrome')
-            .usingServer(process.env.SELENIUM_HOST || 'http://localhost:4444/wd/hub')
-            .build();
+        driver = await new Builder().forBrowser('chrome').build();
     });
 
     after(async function() {
-        if (driver) await driver.quit();
+        await driver.quit();
     });
 
-    it('should verify page title', async function() {
-        const testUrl = process.env.TEST_URL || 'http://example.com';
-        await driver.get(testUrl);
-        
-        const actualTitle = await driver.getTitle();
-        assert.strictEqual(
-            actualTitle, 
-            'Example Domain',
-            `Expected title "Example Domain" but got "${actualTitle}"`
-        );
+    it('should open the website and check the title', async function() {
+        await driver.get('http://example.com');
+        const title = await driver.getTitle();
+        assert.strictEqual(title, 'Example Domain');
     });
 });

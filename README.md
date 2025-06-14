@@ -9,6 +9,7 @@
 [![ChromeDriver](https://img.shields.io/badge/ChromeDriver-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)](https://chromedriver.chromium.org)
 [![MaterializeCSS](https://img.shields.io)]  
 [![PHPUnit Tests](https://github.com/DalondaIkhimokpa/CoffeeHouse-Selenium-Automation-Testing/actions/workflows/phpunit-tests.yml/badge.svg)](https://github.com/DalondaIkhimokpa/CoffeeHouse-Selenium-Automation-Testing/actions/workflows/phpunit-tests.yml)
+[![Selenium Tests](https://github.com/DalondaIkhimokpa/CoffeeHouse-Selenium-Automation-Testing/actions/workflows/selenium-tests.yml/badge.svg)](https://github.com/DalondaIkhimokpa/CoffeeHouse-Selenium-Automation-Testing/actions/workflows/selenium-tests.yml)
 
 ## Project Overview
 

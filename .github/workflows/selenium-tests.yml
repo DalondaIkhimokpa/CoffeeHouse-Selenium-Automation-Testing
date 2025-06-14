@@ -22,8 +22,8 @@ jobs:
           wget -q https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
           sudo unzip -q chromedriver_linux64.zip -d /usr/local/bin
           sudo chmod +x /usr/local/bin/chromedriver
-          chromedriver --version
-          google-chrome --version
+          echo "Chrome version: $(google-chrome --version)"
+          echo "ChromeDriver version: $(chromedriver --version)"
           
       - name: Install dependencies
         run: npm install
@@ -34,11 +34,13 @@ jobs:
           Xvfb :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
           npx mocha tests/selenium/ --timeout=60000
         env:
-          CI: true  # This triggers CI-specific behavior in your tests
+          CI: true
           
       - name: Upload screenshots on failure
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-failures
-          path: '*.png'
+          path: |
+            *.png
+            !node_modules/**/*.png

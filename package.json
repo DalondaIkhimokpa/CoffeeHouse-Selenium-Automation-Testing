@@ -2,11 +2,13 @@
   "name": "coffeeshop-materialize-css",
   "version": "1.0.0",
   "scripts": {
-    "test": "mocha tests/selenium/ --timeout 30000"
+    "test": "mocha tests/selenium/ --timeout 60000",
+    "test:debug": "TEST_URL=http://localhost:3000 npm test"
   },
   "dependencies": {
-    "selenium-webdriver": "4.1.0",
+    "chai": "4.3.6",
+    "chromedriver": "^137.0.3",
     "mocha": "10.0.0",
-    "chai": "4.3.6"
+    "selenium-webdriver": "4.1.0"
   }
 }

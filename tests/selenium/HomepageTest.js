@@ -1,7 +1,7 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const assert = require('assert');
 
-describe('Hello World Selenium Test', function() {
+describe('Homepage Test', function() {
     this.timeout(30000);
     let driver;
 
@@ -16,15 +16,18 @@ describe('Hello World Selenium Test', function() {
         if (driver) await driver.quit();
     });
 
-    it('should verify page title', async function() {
-        const testUrl = process.env.TEST_URL || 'http://example.com';
+    it('should verify homepage loads correctly', async function() {
+        const testUrl = process.env.TEST_URL || 'http://localhost:8080 ';
         await driver.get(testUrl);
+        
+        // Wait for title with longer timeout
+        await driver.wait(until.titleIs('Coffee House'), 5000);
         
         const actualTitle = await driver.getTitle();
         assert.strictEqual(
-            actualTitle, 
-            'Example Domain',
-            `Expected title "Example Domain" but got "${actualTitle}"`
+            actualTitle,
+            'Coffee House',
+            `Expected title "Coffee House" but got "${actualTitle}"`
         );
     });
 });

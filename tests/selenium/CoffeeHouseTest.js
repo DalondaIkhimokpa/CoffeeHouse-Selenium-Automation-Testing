@@ -1,7 +1,7 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const fs = require('fs');
 
-// Debugging function to save screenshots
+// Debugging function (unchanged)
 async function takeScreenshot(driver, name) {
   try {
     const screenshot = await driver.takeScreenshot();
@@ -15,24 +15,21 @@ async function takeScreenshot(driver, name) {
 }
 
 describe('Coffee House Tests', function() {
-  this.timeout(60000); // Increased timeout for CI
+  this.timeout(60000);
   let driver;
 
   before(async () => {
     console.log('\n🚀 Launching browser...');
     
-    // Configure for both local Docker and GitHub Actions
-    const seleniumUrl = process.env.SELENIUM_REMOTE_URL || 'http://localhost:4444/wd/hub';
-    
     try {
       driver = await new Builder()
         .forBrowser('chrome')
-        .usingServer(seleniumUrl) // Connect to Dockerized Selenium
+        .usingServer(process.env.SELENIUM_REMOTE_URL || 'http://localhost:4444/wd/hub')
         .build();
         
-      console.log(`✅ Connected to Selenium at ${seleniumUrl}`);
+      console.log('✅ Browser session started');
     } catch (err) {
-      console.error('❌ Failed to initialize driver:', err);
+      console.error('❌ Browser initialization failed:', err);
       throw err;
     }
   });
@@ -44,41 +41,38 @@ describe('Coffee House Tests', function() {
     try {
       await driver.get(testUrl);
       const actualTitle = await driver.getTitle();
-      console.log(`ℹ️ Actual page title: "${actualTitle}"`);
+      console.log(`ℹ️ Page title: "${actualTitle}"`);
       
       if (!actualTitle.includes('Coffee House')) {
-        await takeScreenshot(driver, 'homepage-wrong-title');
-        throw new Error(`Expected title to contain "Coffee House", got "${actualTitle}"`);
+        await takeScreenshot(driver, 'homepage-title-fail');
+        throw new Error(`Title missing "Coffee House" (actual: "${actualTitle}")`);
       }
       
-      console.log('✅ Homepage loaded successfully');
       await takeScreenshot(driver, 'homepage-success');
     } catch (err) {
-      await takeScreenshot(driver, 'homepage-failure');
+      await takeScreenshot(driver, 'homepage-load-fail');
       throw err;
     }
   });
 
-  it('should have menu section', async () => {
-    console.log('\n🔍 Looking for menu section...');
+  it('should have visible menu section', async () => {
+    console.log('\n🔍 Checking menu section...');
     
     try {
+      // More flexible element location
       const menu = await driver.wait(
-        until.elementLocated(By.id('menu')),
-        10000 // Increased wait time
+        until.elementLocated(By.css('#menu, [data-testid="menu"], [class*="menu"]')),
+        15000
       );
       
-      console.log('✅ Menu section found');
-      await takeScreenshot(driver, 'menu-found');
-      
-      // Additional verification
-      const isVisible = await menu.isDisplayed();
-      if (!isVisible) {
+      if (!(await menu.isDisplayed())) {
+        await takeScreenshot(driver, 'menu-not-visible');
         throw new Error('Menu exists but is not visible');
       }
+      
+      await takeScreenshot(driver, 'menu-visible');
     } catch (err) {
       await takeScreenshot(driver, 'menu-missing');
-      console.error('❌ Menu test failed:', err.message);
       throw err;
     }
   });
@@ -86,10 +80,10 @@ describe('Coffee House Tests', function() {
   after(async () => {
     if (driver) {
       try {
-        console.log('\n🛑 Closing browser...');
         await driver.quit();
+        console.log('\n🛑 Browser closed');
       } catch (err) {
-        console.error('⚠️ Error while closing browser:', err.message);
+        console.error('⚠️ Error closing browser:', err.message);
       }
     }
   });

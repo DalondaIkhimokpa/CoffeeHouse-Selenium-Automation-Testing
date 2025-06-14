@@ -12,6 +12,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
           
       - name: Install Chrome
         run: |
@@ -19,7 +20,12 @@ jobs:
           sudo apt-get install -y google-chrome-stable
           google-chrome --version
 
-      - name: Run tests
+      - name: Install dependencies
         run: |
-          npm install
-          npx mocha tests/selenium/ --timeout 30000
+          npm ci --no-audit
+          npm audit fix --force
+
+      - name: Run tests
+        run: npx mocha tests/selenium/ --timeout 30000
+        env:
+          DISPLAY: ':99'

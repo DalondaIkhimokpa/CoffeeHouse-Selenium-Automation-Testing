@@ -1,0 +1,25 @@
+name: Selenium Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          google-chrome --version
+
+      - name: Run tests
+        run: |
+          npm install
+          npx mocha tests/selenium/ --timeout 30000

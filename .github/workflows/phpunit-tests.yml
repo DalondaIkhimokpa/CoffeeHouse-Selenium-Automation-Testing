@@ -16,4 +16,4 @@ jobs:
       - name: Run tests
         run: |
           composer install
-          vendor/bin/phpunit tests/unit/
+          vendor/bin/phpunit tests/unit/ --colors=always

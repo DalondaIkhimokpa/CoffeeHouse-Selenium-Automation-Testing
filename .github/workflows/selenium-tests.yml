@@ -8,21 +8,37 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           
-      - name: Install Chrome
+      - name: Install Chrome and ChromeDriver
         run: |
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
+          CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d '.' -f 1-3)
+          CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
+          wget -q https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+          sudo unzip -q chromedriver_linux64.zip -d /usr/local/bin
+          sudo chmod +x /usr/local/bin/chromedriver
+          chromedriver --version
           google-chrome --version
-
+          
       - name: Install dependencies
+        run: npm install
+      
+      - name: Run tests with Xvfb
         run: |
-          npm install mocha@10.0.0 selenium-webdriver@4.0.0
-          npm install
-
-      - name: Run tests
-        run: npx mocha tests/selenium/ --timeout 30000
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+          npx mocha tests/selenium/ --timeout=60000
+        env:
+          CI: true  # This triggers CI-specific behavior in your tests
+          
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-failures
+          path: '*.png'

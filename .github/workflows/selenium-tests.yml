@@ -15,15 +15,24 @@ jobs:
           
       - name: Install Chrome and ChromeDriver
         run: |
+          # Install Chrome stable
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
-          CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d '.' -f 1-3)
-          CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
+          
+          # Install matching ChromeDriver
+          CHROME_VERSION=$(google-chrome --version | awk '{print $3}')
+          echo "Chrome version: $CHROME_VERSION"
+          CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$(echo $CHROME_VERSION | cut -d'.' -f1-3))
+          echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
           wget -q https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-          sudo unzip -q chromedriver_linux64.zip -d /usr/local/bin
+          sudo unzip -o -q chromedriver_linux64.zip -d /usr/local/bin
           sudo chmod +x /usr/local/bin/chromedriver
-          echo "Chrome version: $(google-chrome --version)"
-          echo "ChromeDriver version: $(chromedriver --version)"
+          rm chromedriver_linux64.zip
+          chromedriver --version
           
       - name: Install dependencies
         run: npm install
@@ -42,5 +51,5 @@ jobs:
         with:
           name: test-failures
           path: |
-            *.png
+            tests/selenium/*.png
             !node_modules/**/*.png

@@ -1,0 +1,33 @@
+name: PHPUnit Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      chrome:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444:4444
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: dom, curl, libxml
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer install
+          sudo apt-get install -y libnss3-dev
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit
+        env:
+          CHROME_DRIVER_URL: "https://chromedriver.storage.googleapis.com/LATEST_RELEASE"

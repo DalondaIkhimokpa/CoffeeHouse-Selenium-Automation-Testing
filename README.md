@@ -7,8 +7,8 @@
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com)
 [![Mocha](https://img.shields.io/badge/Mocha-8D6748?style=for-the-badge&logo=Mocha&logoColor=white)](https://mochajs.org)
 [![ChromeDriver](https://img.shields.io/badge/ChromeDriver-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)](https://chromedriver.chromium.org)
-[![Materialize](https://img.shields.io)]  
-
+[![MaterializeCSS](https://img.shields.io)]  
+[![PHPUnit Tests](https://github.com/DalondaIkhimokpa/CoffeeHouse-Selenium-Automation-Testing/actions/workflows/phpunit-tests.yml/badge.svg)](https://github.com/DalondaIkhimokpa/CoffeeHouse-Selenium-Automation-Testing/actions/workflows/phpunit-tests.yml)
 
 ## Project Overview
 

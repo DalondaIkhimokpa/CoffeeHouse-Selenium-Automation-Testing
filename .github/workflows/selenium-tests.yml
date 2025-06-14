@@ -13,8 +13,16 @@ jobs:
         with:
           node-version: '20'
           
-      - name: Install dependencies
-        run: npm install
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          google-chrome --version
 
-      - name: Run tests
+      - name: Start PHP Server
+        run: |
+          php -S localhost:8080 -t public/ &> php-server.log &
+          sleep 5 # Wait for server to start
+
+      - name: Run Tests
         run: npm test

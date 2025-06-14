@@ -1,10 +1,15 @@
-name: Selenium Tests
+name: Selenium Tests (Docker)
 
 on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      selenium:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444:4444
     steps:
       - uses: actions/checkout@v4
       
@@ -13,43 +18,10 @@ jobs:
         with:
           node-version: '20'
           
-      - name: Install Chrome and ChromeDriver
-        run: |
-          # Install Chrome stable
-          sudo apt-get update
-          sudo apt-get install -y wget unzip
-          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-          
-          # Install matching ChromeDriver
-          CHROME_VERSION=$(google-chrome --version | awk '{print $3}')
-          echo "Chrome version: $CHROME_VERSION"
-          CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$(echo $CHROME_VERSION | cut -d'.' -f1-3))
-          echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
-          wget -q https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-          sudo unzip -o -q chromedriver_linux64.zip -d /usr/local/bin
-          sudo chmod +x /usr/local/bin/chromedriver
-          rm chromedriver_linux64.zip
-          chromedriver --version
-          
       - name: Install dependencies
         run: npm install
       
-      - name: Run tests with Xvfb
-        run: |
-          export DISPLAY=:99
-          Xvfb :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
-          npx mocha tests/selenium/ --timeout=60000
+      - name: Run tests
+        run: npx mocha tests/selenium/ --timeout=60000
         env:
-          CI: true
-          
-      - name: Upload screenshots on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-failures
-          path: |
-            tests/selenium/*.png
-            !node_modules/**/*.png
+          SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub

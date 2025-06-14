@@ -1,96 +1,92 @@
 const { Builder, By, until } = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
 const fs = require('fs');
 
-// Enhanced debugging function
+// Debugging function to save screenshots
 async function takeScreenshot(driver, name) {
   try {
     const screenshot = await driver.takeScreenshot();
-    fs.writeFileSync(`${name}.png`, screenshot, 'base64');
-    console.log(`📸 Screenshot saved: ${name}.png`);
+    const screenshotPath = `tests/selenium/screenshots/${name}.png`;
+    fs.mkdirSync('tests/selenium/screenshots', { recursive: true });
+    fs.writeFileSync(screenshotPath, screenshot, 'base64');
+    console.log(`📸 Screenshot saved: ${screenshotPath}`);
   } catch (err) {
     console.error('⚠️ Failed to take screenshot:', err.message);
   }
 }
 
 describe('Coffee House Tests', function() {
-  // Increased timeout for CI environment
-  this.timeout(60000); // 60 seconds for GitHub Actions
+  this.timeout(60000); // Increased timeout for CI
   let driver;
 
   before(async () => {
-    console.log('\n🚀 Launching Chrome browser...');
+    console.log('\n🚀 Launching browser...');
     
-    // Configure Chrome options for both local and CI environments
-    const options = new chrome.Options();
+    // Configure for both local Docker and GitHub Actions
+    const seleniumUrl = process.env.SELENIUM_REMOTE_URL || 'http://localhost:4444/wd/hub';
     
-    // Essential settings for GitHub Actions
-    options.addArguments(
-      '--headless=new',         // New headless mode
-      '--no-sandbox',          // Needed for CI environments
-      '--disable-dev-shm-usage', // Prevent /dev/shm issues
-      '--window-size=1280,1024'  // Set consistent window size
-    );
-    
-    // Additional settings for CI
-    if (process.env.CI || process.env.GITHUB_ACTIONS) {
-      options.addArguments('--disable-gpu'); // Disable GPU in CI
-      console.log('ℹ️ Running in CI mode');
-    }
-
     try {
       driver = await new Builder()
         .forBrowser('chrome')
-        .setChromeOptions(options)
+        .usingServer(seleniumUrl) // Connect to Dockerized Selenium
         .build();
-      console.log('✅ Browser launched successfully');
+        
+      console.log(`✅ Connected to Selenium at ${seleniumUrl}`);
     } catch (err) {
-      console.error('❌ Failed to launch browser:', err);
+      console.error('❌ Failed to initialize driver:', err);
       throw err;
     }
   });
 
   it('should load homepage', async () => {
-    const url = process.env.TEST_URL || 'http://localhost:8080';
-    console.log(`\n🌐 Navigating to ${url}...`);
+    const testUrl = process.env.TEST_URL || 'http://localhost:8080';
+    console.log(`\n🌐 Navigating to ${testUrl}...`);
     
     try {
-      await driver.get(url);
-      
-      // Debug: Print actual title
+      await driver.get(testUrl);
       const actualTitle = await driver.getTitle();
       console.log(`ℹ️ Actual page title: "${actualTitle}"`);
       
       if (!actualTitle.includes('Coffee House')) {
-        await takeScreenshot(driver, 'wrong-title');
-        throw new Error(`Expected title to contain "Coffee House", but got "${actualTitle}"`);
+        await takeScreenshot(driver, 'homepage-wrong-title');
+        throw new Error(`Expected title to contain "Coffee House", got "${actualTitle}"`);
       }
       
       console.log('✅ Homepage loaded successfully');
-      await takeScreenshot(driver, 'homepage-loaded');
+      await takeScreenshot(driver, 'homepage-success');
     } catch (err) {
-      await takeScreenshot(driver, 'page-load-failed');
+      await takeScreenshot(driver, 'homepage-failure');
       throw err;
     }
   });
 
   it('should have menu section', async () => {
     console.log('\n🔍 Looking for menu section...');
+    
     try {
-      const menu = await driver.wait(until.elementLocated(By.id('menu')), 10000); // Increased timeout
+      const menu = await driver.wait(
+        until.elementLocated(By.id('menu')),
+        10000 // Increased wait time
+      );
+      
       console.log('✅ Menu section found');
       await takeScreenshot(driver, 'menu-found');
+      
+      // Additional verification
+      const isVisible = await menu.isDisplayed();
+      if (!isVisible) {
+        throw new Error('Menu exists but is not visible');
+      }
     } catch (err) {
       await takeScreenshot(driver, 'menu-missing');
-      console.log('❌ Could not find menu section');
+      console.error('❌ Menu test failed:', err.message);
       throw err;
     }
   });
 
   after(async () => {
     if (driver) {
-      console.log('\n🛑 Closing browser...');
       try {
+        console.log('\n🛑 Closing browser...');
         await driver.quit();
       } catch (err) {
         console.error('⚠️ Error while closing browser:', err.message);

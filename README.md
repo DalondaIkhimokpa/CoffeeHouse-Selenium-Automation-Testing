@@ -1,4 +1,4 @@
-# Coffee House Website
+# ☕️ Coffee House Website ☕️
 
 
 # Tech Stack

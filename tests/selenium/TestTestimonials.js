@@ -15,6 +15,7 @@ describe('Testimonials Tests', function() {
 
     it('should display correct testimonial text', async function() {
         driver = await new Builder().forBrowser('chrome').build();
+        setChromeOptions(new chrome.Options().headless()) // <== Important
         try {
             await driver.get('http://localhost:8080/index.html'); // Replace with your local URL
 

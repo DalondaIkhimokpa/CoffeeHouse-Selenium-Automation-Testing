@@ -16,6 +16,7 @@ describe('Footer Tests', function() {
 
     before(async function() {
         driver = await new Builder().forBrowser('chrome').build();
+        setChromeOptions(new chrome.Options().headless()) // <== Important
     });
 
     after(async function() {

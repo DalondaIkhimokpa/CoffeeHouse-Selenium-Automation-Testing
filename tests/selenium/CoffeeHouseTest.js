@@ -17,7 +17,7 @@ describe('Coffee House Tests', function() {
     console.log('\n🚀 Launching Chrome browser...');
     driver = await new Builder()
       .forBrowser('chrome')
-      .setChromeOptions(new chrome.Options())
+      .setChromeOptions(new chrome.Options().headless()) // <== Important
       .build();
   });
 

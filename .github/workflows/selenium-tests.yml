@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       selenium:
-        image: selenium/standalone-chrome
+        image: seleniarm/standalone-chrome # For ARM runners
         ports:
           - 4444:4444
     steps:

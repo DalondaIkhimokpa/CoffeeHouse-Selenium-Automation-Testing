@@ -1,3 +1,4 @@
+const BASE_URL = process.env.CI ? 'http://localhost:8080' : 'http://localhost:8080';
 const { Builder, By, until } = require('selenium-webdriver');
 const assert = require('assert');
 const fs = require('fs');

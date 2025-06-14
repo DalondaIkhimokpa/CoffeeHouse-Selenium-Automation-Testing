@@ -13,21 +13,30 @@ jobs:
           - 4444:4444
 
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        coverage: none
+        tools: composer:v2
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: dom, curl, libxml
-          coverage: none
+    - name: Validate composer.json
+      run: composer validate
 
-      - name: Install dependencies
-        run: |
-          composer install
-          sudo apt-get install -y libnss3-dev
+    - name: Install dependencies
+      run: |
+        composer install --prefer-dist --no-progress --no-scripts
+        sudo apt-get update
+        sudo apt-get install -y libnss3-dev unzip wget
 
-      - name: Run PHPUnit
-        run: vendor/bin/phpunit
-        env:
-          CHROME_DRIVER_URL: "https://chromedriver.storage.googleapis.com/LATEST_RELEASE"
+    - name: Verify PHPUnit installation
+      run: ls -la vendor/bin/
+
+    - name: Run PHPUnit
+      run: |
+        echo "Current directory: $(pwd)"
+        echo "PHPUnit path: $(which phpunit)"
+        ./vendor/bin/phpunit --version
+        ./vendor/bin/phpunit -v --colors=always

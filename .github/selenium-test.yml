@@ -1,0 +1,29 @@
+name: Selenium Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      chrome:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444:4444
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Selenium tests
+      run: npx mocha tests/selenium/*.js
+      env:
+        SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub

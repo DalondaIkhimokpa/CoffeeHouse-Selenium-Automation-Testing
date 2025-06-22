@@ -13,3 +13,7 @@ geckodriver.log
 .DS_Store
 
 vendor
+
+# Ignore large video files
+*.mov
+/videos/

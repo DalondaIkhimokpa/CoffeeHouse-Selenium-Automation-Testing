@@ -18,7 +18,9 @@ The Coffee Shop Website is a visually appealing and responsive web application d
 ## View Site: https://coffee-house-selenium-automation-te.vercel.app/#!
 
 
-[▶ Watch Test Demo](./videos/Screen-Recording-2025-06-22.mov)
+## 🎥 Demo Video
+
+[▶ Watch Test Demo on Google Drive](https://drive.google.com/file/d/1QrfPfF-qkDjyJPmOib7ARgvSCG5B5wS4/view?usp=drive_link)
 
 
 ## Features

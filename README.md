@@ -17,7 +17,7 @@
 The Coffee Shop Website is a visually appealing and responsive web application designed to showcase the offerings of a coffee shop. It includes sections for navigation, testimonials, a parallax effect, and a footer with contact information. The project uses Materialize CSS, Tailwind CSS, and custom styles for a modern and professional look.
 
 ## View Site: https://coffee-house-selenium-automation-te.vercel.app/#!
-[▶ Watch Test Demo](./videos/Screen-Recording-2025-06-22.mov)
+
 
 ## Features
 - **Responsive Design**: Optimized for desktop and mobile devices.

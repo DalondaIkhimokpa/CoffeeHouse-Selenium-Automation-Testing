@@ -1,6 +1,5 @@
 # ☕️ Coffee House Website ☕️
 
-
 # Tech Stack
 
 [![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white)](https://selenium.dev)
@@ -19,7 +18,11 @@ The Coffee Shop Website is a visually appealing and responsive web application d
 ## View Site: https://coffee-house-selenium-automation-te.vercel.app/#!
 
 
+[▶ Watch Test Demo](./videos/Screen-Recording-2025-06-22.mov)
+
+
 ## Features
+
 - **Responsive Design**: Optimized for desktop and mobile devices.
 - **Navigation Bar**: Includes links to Home, About, Menu, and Testimonials sections.
 - **Hero Section**: A visually engaging introduction to the coffee shop.
@@ -28,6 +31,7 @@ The Coffee Shop Website is a visually appealing and responsive web application d
 - **Footer**: Contains contact information and social media links.
 
 ## Technologies Used
+
 - **HTML5**: Structure of the website.
 - **CSS3**: Styling and layout.
 - **Materialize CSS**: Pre-built components for faster development.
@@ -39,7 +43,8 @@ The Coffee Shop Website is a visually appealing and responsive web application d
 1. Clone the repository:
    ```bash
    git clone https://github.com/DalondaIkhimokpa/coffeeshop-materialize-css.git
-   ```
+```
+
 2. Navigate to the project directory:
    ```bash
    cd coffeeshop-materialize-css
@@ -50,6 +55,7 @@ The Coffee Shop Website is a visually appealing and responsive web application d
    ```
 
 ## Usage
+
 1. Start a local server to serve the website:
    ```bash
    npm run start-server
@@ -61,9 +67,11 @@ The Coffee Shop Website is a visually appealing and responsive web application d
    ```
 
 ## Testing
+
 The project uses Selenium WebDriver for browser automation testing and Mocha as the test runner. Tests are located in the `tests/selenium/` directory.
 
 ### Example Test Script
+
 ```javascript
 const { Builder, By, until } = require('selenium-webdriver');
 const assert = require('assert');
@@ -95,14 +103,18 @@ describe('Coffee Shop Website Tests', function () {
 ```
 
 ## License
+
 This project is licensed under the ISC License. See the `LICENSE` file for details.
 
 ## Author
+
 D. Ikhimokpa
 
 ## Contributing
+
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
 
 ## Acknowledgments
+
 - Materialize CSS for pre-built components.
 - Selenium WebDriver and Mocha for testing.
